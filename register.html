@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — iGalaxy Mobile Shop</title>
+    <meta name="description"
+        content="Join iGalaxy and start shopping the best Apple, Samsung, and Google Pixel phones at unbeatable prices." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="Assets/logo/logo-m.png" />
+    <style>
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="overflow-hidden">
+    <div class="animated-bg"></div>
+    <div id="toast-container"></div>
+
+    <div class="auth-layout min-h-screen">
+
+        <!-- Left panel -->
+        <div class="auth-panel hidden md:flex">
+            <div class="text-center z-10">
+                <!-- Logo -->
+                <div class="overflow-hidden flex items-center justify-center gap-2 mb-10">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-lg"
+                        style="background:linear-gradient(135deg,#6C63FF,#A855F7)">
+                        <img src="Assets/logo/logo-m.png" alt="">
+                    </div>
+                    <span class="text-2xl font-bold text-white">iGalaxy</span>
+                </div>
+
+                <img class="rounded-xl" src="Assets/other/entrance-img.png" alt="">
+
+            </div>
+        </div>
+
+        <!-- Right form panel -->
+        <div class="auth-form-wrap" style="padding-top:2rem;padding-bottom:2rem;overflow-y:auto">
+            <div class="w-full" style="max-width:440px">
+
+                <h1 class="text-3xl font-extrabold text-white mb-1">Create Account</h1>
+                <p class="mb-7" style="color:var(--text-secondary); font-size:0.9rem">
+                    Already have an account?
+                    <a href="login.html" class="font-semibold hover:underline" style="color:var(--brand-primary)">Sign
+                        In</a>
+                </p>
+
+                <form id="register-form" novalidate>
+                    <!-- Full Name -->
+                    <div class="input-group">
+                        <input type="text" id="full_name" name="full_name" placeholder="name" required
+                            autocomplete="name" />
+                        <label for="full_name">Full Name</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-group">
+                        <input type="email" id="email" name="email" placeholder="email" required autocomplete="email" />
+                        <label for="email">Email Address</label>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="input-group">
+                        <input type="tel" id="phone" name="phone" placeholder="phone" autocomplete="tel" />
+                        <label for="phone">Phone Number (Optional)</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder="password" required
+                            autocomplete="new-password" style="padding-right:3rem" />
+                        <label for="password">Password</label>
+                        <button type="button" class="pw-toggle" data-pw-toggle="password"
+                            aria-label="Toggle password visibility">👁️</button>
+                    </div>
+                    <!-- Strength meter -->
+                    <div style="margin-top:-0.75rem; margin-bottom:1rem; padding:0 0.25rem">
+                        <div id="strength-bar" class="strength-bar strength-0">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        <p id="strength-label" class="strength-label"></p>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="input-group">
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="confirm"
+                            required autocomplete="new-password" style="padding-right:3rem" />
+                        <label for="confirm_password">Confirm Password</label>
+                        <button type="button" class="pw-toggle" data-pw-toggle="confirm_password"
+                            aria-label="Toggle confirm password visibility">👁️</button>
+                    </div>
+
+                    <!-- T&C -->
+                    <label class="flex items-start gap-3 mb-6 cursor-pointer"
+                        style="font-size:0.83rem; color:var(--text-secondary)">
+                        <input type="checkbox" name="terms" id="terms" class="accent-purple-500 mt-0.5 flex-shrink-0"
+                            required />
+                        <span>
+                            I agree to iGalaxy's
+                            <a href="#" class="hover:underline" style="color:var(--brand-primary)">Terms of Service</a>
+                            and
+                            <a href="#" class="hover:underline" style="color:var(--brand-primary)">Privacy Policy</a>
+                        </span>
+                    </label>
+
+                    <button type="submit" class="btn-primary w-full text-base py-3">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="flex items-center gap-3 my-5">
+                    <div class="flex-1 h-px" style="background:var(--border-glass)"></div>
+                    <span style="color:var(--text-secondary); font-size:0.8rem">or sign up with</span>
+                    <div class="flex-1 h-px" style="background:var(--border-glass)"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="btn-outline text-sm py-3 gap-2"
+                        onclick="showToast('Social sign-up coming soon!','error')">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#EA4335"
+                                d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z" />
+                            <path fill="#34A853"
+                                d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z" />
+                            <path fill="#4A90E2"
+                                d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z" />
+                            <path fill="#FBBC05"
+                                d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z" />
+                        </svg>
+                        Google
+                    </button>
+                    <button class="btn-outline text-sm py-3 gap-2"
+                        onclick="showToast('Social sign-up coming soon!','error')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                        Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iGalaxy — Premium Mobile Phones | Apple, Samsung & Pixel</title>
+    <meta name="description"
+        content="Shop the latest Apple iPhone, Samsung Galaxy, and Google Pixel phones at iGalaxy. Free delivery, genuine products, and flexible EMI plans." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="Assets/logo/logo-m.png" />
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+    <header id="navbar" class="navbar">
+        <div class="max-w-7xl mx-auto px-5 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 group" style="text-decoration:none">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-black transition-transform group-hover:scale-105"
+                    style="background:linear-gradient(135deg,#6C63FF,#A855F7);font-size:0.85rem">
+                    <img src="Assets/logo/logo-m.png" alt="">
+                </div>
+                <span class="text-xl font-extrabold text-white tracking-tight">iGalaxy</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-7" style="font-size:0.9rem; color:var(--text-secondary)">
+                <a href="#brands" class="hover:text-white transition-colors">Brands</a>
+                <a href="#phones" class="hover:text-white transition-colors">Phones</a>
+                <a href="#why-us" class="hover:text-white transition-colors">Why Us</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Guest Nav (default — shown to anyone without a session) -->
+            <div id="guest-nav" class="flex items-center gap-3">
+                <a href="login.html" class="btn-outline hidden md:inline-flex"
+                    style="padding:0.55rem 1.25rem; font-size:0.88rem">Sign In</a>
+                <a href="register.html" class="btn-primary hidden md:inline-flex"
+                    style="padding:0.55rem 1.25rem; font-size:0.88rem">Sign Up</a>
+            </div>
+
+            <!-- Logged-in Nav (hidden until JS confirms a session) -->
+            <div id="user-nav" style="display:none" class="items-center gap-3">
+                <!-- Online indicator + name -->
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full"
+                    style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25)">
+                    <span
+                        style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;box-shadow:0 0 6px #10B981"></span>
+                    <span style="font-size:0.83rem;color:#6EE7B7;font-weight:600">Hey, <span
+                            id="user-display-name"></span>!</span>
+                </div>
+                <!-- Avatar -->
+                <a href="#" class="avatar-btn" title="My Account">
+                    <img src="Assets/other/profile.png" alt="">
+                </a>
+                <!-- Logout -->
+                <a href="php/logout.php" class="hidden md:inline-flex btn-outline"
+                    style="padding:0.45rem 1rem; font-size:0.82rem; border-color:rgba(168,85,247,0.4); color:#C4B5FD">Logout</a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button id="menu-btn" class="md:hidden text-white p-2" aria-label="Open menu">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/60 backdrop-blur-xl border-t mt-2 px-5 py-4 space-y-3"
+            style="border-color:var(--border-glass)">
+            <a href="#phones" class="block py-2 text-sm hover:text-white transition-colors"
+                style="color:var(--text-secondary)">Phones</a>
+            <a href="#brands" class="block py-2 text-sm hover:text-white transition-colors"
+                style="color:var(--text-secondary)">Brands</a>
+            <a href="#why-us" class="block py-2 text-sm hover:text-white transition-colors"
+                style="color:var(--text-secondary)">Why Us</a>
+            <!-- Mobile guest buttons -->
+            <div id="mobile-guest-nav" class="flex items-center gap-3 pt-2">
+                <a href="login.html" class="btn-outline text-sm py-2 px-4 flex-1 text-center">Sign In</a>
+                <a href="register.html" class="btn-primary text-sm py-2 px-4 flex-1 text-center">Sign Up</a>
+            </div>
+            <!-- Mobile user info (hidden if not logged in) -->
+            <div id="mobile-user-nav" style="display:none" class="pt-2 space-y-2">
+                <div class="flex items-center gap-2 py-2" style="color:#6EE7B7; font-size:0.88rem">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block"></span>
+                    <span>Signed in as <strong id="mobile-user-name"></strong></span>
+                </div>
+                <a href="php/logout.php" class="btn-outline text-sm py-2 px-4 w-full text-center block"
+                    style="border-color:rgba(168,85,247,0.4);color:#C4B5FD">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── HERO ───────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden pt-10 pb-20 px-5">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Text -->
+            <div>
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-white mb-6">
+                    The world's best<br />
+                    phones,<br />
+                    <span class="gradient-text">in one place.</span>
+                </h1>
+                <p class="text-lg mb-8" style="color:var(--text-secondary); max-width:480px; line-height:1.75">
+                    Discover Apple, Samsung, and Google Pixel flagship phones with genuine warranty,
+                    same-day delivery, and the best prices in Sri Lanka.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#phones" class="btn-primary text-base px-8 py-3.5">Shop Now →</a>
+                    <a href="#brands" class="btn-outline text-base px-8 py-3.5">Explore Brands</a>
+                </div>
+                <!-- Trust badges -->
+                <div class="flex flex-wrap items-center gap-5 mt-10">
+                    <div class="flex items-center gap-2">
+                        <span style="color:#10B981; font-size:1.1rem">✓</span>
+                        <span style="font-size:0.82rem; color:var(--text-secondary)">100% Genuine</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span style="color:#10B981; font-size:1.1rem">✓</span>
+                        <span style="font-size:0.82rem; color:var(--text-secondary)">Free Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span style="color:#10B981; font-size:1.1rem">✓</span>
+                        <span style="font-size:0.82rem; color:var(--text-secondary)">30-Day Returns</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span style="color:#10B981; font-size:1.1rem">✓</span>
+                        <span style="font-size:0.82rem; color:var(--text-secondary)">0% EMI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero SVG Illustration -->
+            <div class="flex justify-center lg:justify-end">
+                <div class="relative">
+                    <!-- Glow rings -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            style="width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,0.2) 0%,transparent 70%)">
+                        </div>
+                    </div>
+                    <!-- 3 phones side by side (SVG) -->
+                    <img src="Assets/phoneImgs/main-cover.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── BRANDS STRIP ────────────────────────────────────────── -->
+    <section id="brands" class="py-10 border-y" style="border-color:var(--border-glass)">
+        <div class="max-w-7xl mx-auto px-5">
+            <p class="text-center text-sm font-semibold uppercase tracking-widest mb-8"
+                style="color:var(--text-secondary)">Authorised Retailer For</p>
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-20">
+                <!-- Apple -->
+                <div class="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                    <img src="Assets/Brands/apple.png" alt="">
+                </div>
+                <!-- Samsung -->
+                <div class="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                    <img src="Assets/Brands/samsung.png" alt="">
+                </div>
+                <!-- Google -->
+                <div class="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                    <img src="Assets/Brands/google.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FEATURED PHONES ─────────────────────────────────────── -->
+    <section id="phones" class="py-20 px-5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <p class="hero-badge mx-auto inline-flex">Featured Phones</p>
+                <h2 class="text-4xl font-extrabold text-white mt-4 mb-3">Bestsellers Right Now</h2>
+                <p style="color:var(--text-secondary)">Handpicked flagship phones at their best prices</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- iPhone 16 Pro -->
+                <div class="glass product-card p-6 reveal" style="transition-delay:0.05s">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="brand-badge badge-apple">Apple</span>
+                        <span class="text-xs font-bold px-2 py-0.5 rounded-full"
+                            style="background:rgba(16,185,129,0.15);color:#6EE7B7">In Stock</span>
+                    </div>
+                    <!-- Phone SVG -->
+                    <img src="Assets/phoneImgs/16pro.png" alt="">
+                    <h3 class="text-lg font-bold text-white mt-4 mb-1">iPhone 16 Pro</h3>
+                    <p style="color:var(--text-secondary); font-size:0.82rem" class="mb-4">A18 Pro chip · 6.3" OLED ·
+                        48MP camera</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xl font-extrabold gradient-text">Rs. 289,900</p>
+                            <p style="font-size:0.75rem; color:var(--text-secondary)">or Rs. 24,158/mo EMI</p>
+                        </div>
+                        <a href="login.html" class="btn-primary" style="padding:0.55rem 1.1rem; font-size:0.82rem">Buy
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Samsung Galaxy S25 Ultra -->
+                <div class="glass product-card p-6 reveal"
+                    style="transition-delay:0.12s; border-color:rgba(108,99,255,0.3)">
+                    <!-- Hot badge -->
+                    <div class="absolute top-4 right-4 text-xs font-bold px-2 py-0.5 rounded-full"
+                        style="background:linear-gradient(135deg,#6C63FF,#A855F7);color:#fff">🔥 Hot</div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="brand-badge badge-samsung">Samsung</span>
+                    </div>
+                    <img src="Assets/phoneImgs/s25.png" alt="">
+                    <h3 class="text-lg font-bold text-white mt-4 mb-1">Galaxy S25 Ultra</h3>
+                    <p style="color:var(--text-secondary); font-size:0.82rem" class="mb-4">Snapdragon 8 Elite · 6.9"
+                        QHD+ · 200MP</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xl font-extrabold gradient-text">Rs. 319,900</p>
+                            <p style="font-size:0.75rem; color:var(--text-secondary)">or Rs. 26,658/mo EMI</p>
+                        </div>
+                        <a href="login.html" class="btn-primary" style="padding:0.55rem 1.1rem; font-size:0.82rem">Buy
+                            Now</a>
+                    </div>
+                </div>
+
+                <!-- Google Pixel 9 Pro -->
+                <div class="glass product-card p-6 reveal" style="transition-delay:0.2s">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="brand-badge badge-pixel">Google</span>
+                        <span class="text-xs font-bold px-2 py-0.5 rounded-full"
+                            style="background:rgba(16,185,129,0.15);color:#6EE7B7">In Stock</span>
+                    </div>
+                    <img src="Assets/phoneImgs/Google Pixel 9 Pro.png" alt="">
+                    <h3 class="text-lg font-bold text-white mt-4 mb-1">Google Pixel 9 Pro</h3>
+                    <p style="color:var(--text-secondary); font-size:0.82rem" class="mb-4">Tensor G4 · 6.3" LTPO OLED ·
+                        50MP</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xl font-extrabold gradient-text">Rs. 219,900</p>
+                            <p style="font-size:0.75rem; color:var(--text-secondary)">or Rs. 18,325/mo EMI</p>
+                        </div>
+                        <a href="login.html" class="btn-primary" style="padding:0.55rem 1.1rem; font-size:0.82rem">Buy
+                            Now</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="#" class="btn-outline px-8 py-3">View All Phones →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WHY US ───────────────────────────────────────────────── -->
+    <section id="why-us" class="py-20 px-5" style="background:rgba(255,255,255,0.02)">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <p class="mx-auto inline-flex">Why iGalaxy</p>
+                <h2 class="text-4xl font-extrabold text-white mt-4 mb-3">The Premium Difference</h2>
+                <p style="color:var(--text-secondary)">We don't just sell phones — we deliver an experience</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="glass p-6 rounded-2xl reveal" style="transition-delay:0.05s">
+                    <div class="feature-icon mb-4">🛡️</div>
+                    <h3 class="font-bold text-white mb-2">100% Genuine</h3>
+                    <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.6">All phones are sourced
+                        directly from authorised distributors with official warranty.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl reveal" style="transition-delay:0.1s">
+                    <div class="feature-icon mb-4">🚀</div>
+                    <h3 class="font-bold text-white mb-2">Same-Day Delivery</h3>
+                    <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.6">Order before 2 PM and
+                        receive your phone the same day, islandwide.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl reveal" style="transition-delay:0.15s">
+                    <div class="feature-icon mb-4">💳</div>
+                    <h3 class="font-bold text-white mb-2">0% EMI Plans</h3>
+                    <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.6">Flexible instalment plans
+                        with all major banks. No hidden fees.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl reveal" style="transition-delay:0.2s">
+                    <div class="feature-icon mb-4">🔄</div>
+                    <h3 class="font-bold text-white mb-2">Easy Returns</h3>
+                    <p style="color:var(--text-secondary); font-size:0.85rem; line-height:1.6">Not satisfied? Return
+                        within 30 days for a full refund, no questions asked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── STATS STRIP ─────────────────────────────────────────── -->
+    <section class="py-16 px-5">
+        <div class="max-w-5xl mx-auto glass p-10 rounded-3xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="reveal">
+                    <p class="text-4xl font-extrabold gradient-text">50K+</p>
+                    <p class="text-sm mt-1" style="color:var(--text-secondary)">Happy Customers</p>
+                </div>
+                <div class="reveal" style="transition-delay:0.05s">
+                    <p class="text-4xl font-extrabold gradient-text">500+</p>
+                    <p class="text-sm mt-1" style="color:var(--text-secondary)">Phone Models</p>
+                </div>
+                <div class="reveal" style="transition-delay:0.1s">
+                    <p class="text-4xl font-extrabold gradient-text">4.9★</p>
+                    <p class="text-sm mt-1" style="color:var(--text-secondary)">Average Rating</p>
+                </div>
+                <div class="reveal" style="transition-delay:0.15s">
+                    <p class="text-4xl font-extrabold gradient-text">24/7</p>
+                    <p class="text-sm mt-1" style="color:var(--text-secondary)">Customer Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── FOOTER ──────────────────────────────────────────────── -->
+    <footer id="contact" class="py-12 px-5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b" style="border-color:var(--border-glass)">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-black text-sm"
+                            style="background:linear-gradient(135deg,#6C63FF,#A855F7)">iG</div>
+                        <span class="font-bold text-white">iGalaxy</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.8">
+                        Your #1 destination for premium smartphones in Sri Lanka since 2019.
+                    </p>
+                    <!-- Social icons -->
+                    <div class="flex gap-3 mt-5">
+                        <a href="#"
+                            class="w-8 h-8 glass rounded-lg flex items-center justify-center hover:border-purple-500 transition-colors"
+                            style="font-size:0.9rem">📘</a>
+                        <a href="#"
+                            class="w-8 h-8 glass rounded-lg flex items-center justify-center hover:border-purple-500 transition-colors"
+                            style="font-size:0.9rem">📸</a>
+                        <a href="#"
+                            class="w-8 h-8 glass rounded-lg flex items-center justify-center hover:border-purple-500 transition-colors"
+                            style="font-size:0.9rem">🐦</a>
+                    </div>
+                </div>
+
+                <!-- Shop -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm">Shop</h4>
+                    <ul class="space-y-2" style="color:var(--text-secondary); font-size:0.83rem">
+                        <li><a href="#" class="hover:text-white transition-colors">iPhone</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Samsung Galaxy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Google Pixel</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trade-In</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm">Support</h4>
+                    <ul class="space-y-2" style="color:var(--text-secondary); font-size:0.83rem">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns & Refunds</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Warranty</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Order Tracking</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4 text-sm">Contact</h4>
+                    <ul class="space-y-3" style="color:var(--text-secondary); font-size:0.83rem">
+                        <li class="flex items-start gap-2">
+                            <span>📍</span>
+                            <span>123 Galle Road, Colombo 03, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📞</span>
+                            <a href="tel:+94112345678" class="hover:text-white transition-colors">+94 11 234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>📧</span>
+                            <a href="mailto:hello@igalaxy.lk" class="hover:text-white transition-colors">igalaxy.lk</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>🕐</span>
+                            <span>Mon–Sat, 9AM – 8PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-3"
+                style="font-size:0.78rem; color:var(--text-secondary)">
+                <p>© 2026 iGalaxy Mobile Shop. All rights reserved.</p>
+                <div class="flex gap-5">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/home.js"></script>
+</body>
+
+</html>
